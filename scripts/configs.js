@@ -40,6 +40,7 @@ function buildConfigURL(environment) {
       }
       const configURL = new URL(`${window.location.origin}/${fileName}`);
       return configURL;  
+      console.log(`config url: ${configURL}`);
   } 
 
 const getConfigForEnvironment = async (environment) => {
