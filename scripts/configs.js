@@ -1,11 +1,5 @@
 const ALLOWED_CONFIGS = ['prod', 'stage', 'dev'];
 
-// Added to check if doc or xwalk.
-import { getMetadata } from './aem.js';
-const aemxwalk = getMetadata('aemxwalk');
-console.log(`Testing from AdobeDEVXSC`);
-console.log(`Are we delivering from crosswalk? ${aemxwalk}`);
-
 /**
  * This function calculates the environment in which the site is running based on the URL.
  * It defaults to 'prod'. In non 'prod' environments, the value can be overwritten using
@@ -34,13 +28,9 @@ export const calcEnvironment = () => {
 function buildConfigURL(environment) {
   const env = environment || calcEnvironment();
   let fileName = 'configs.json';
-  if (aemxwalk === 'false'){
-    fileName = 'configs.json?sheet=prod';
-  }
   if (env !== 'prod') {
     fileName = `configs-${env}.json`;
-  }
- 
+  } 
       
       /* eslint-disable-next-line no-use-before-define */
       if (getAemAuthorEnv()) {
