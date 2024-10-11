@@ -28,9 +28,6 @@ export const calcEnvironment = () => {
 function buildConfigURL(environment) {
   const env = environment || calcEnvironment();
   let fileName = 'configs.json';
-  if (env !== 'prod') {
-    fileName = `configs-${env}.json`;
-  } 
       
       /* eslint-disable-next-line no-use-before-define */
       if (getAemAuthorEnv()) {
@@ -39,8 +36,7 @@ function buildConfigURL(environment) {
         return new URL(`${window.location.origin}${aemContentPath}/${fileName}`);
       }
       const configURL = new URL(`${window.location.origin}/${fileName}`);
-      return configURL;  
-      console.log(`config url: ${configURL}`);
+      return configURL;        
   } 
 
 const getConfigForEnvironment = async (environment) => {
