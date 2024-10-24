@@ -13,7 +13,8 @@ import {
   loadSection,
   loadSections,
   loadCSS,
-  getMetadata
+  getMetadata,
+  loadScript
 } from './aem.js';
 import { getProduct, getSkuFromUrl, trackHistory } from './commerce.js';
 import initializeDropins from './dropins.js';
