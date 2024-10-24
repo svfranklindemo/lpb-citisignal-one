@@ -6,7 +6,7 @@ import {
   decorateIcons,
   decorateSections,
   decorateTemplateAndTheme,
-  loadBlocks,
+  loadSections,
   loadCSS,
   loadFooter,
   loadHeader,
@@ -344,7 +344,7 @@ async function loadLazy(doc) {
   autolinkModals(doc);
 
   const main = doc.querySelector('main');
-  await loadBlocks(main);
+  await loadSections(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
