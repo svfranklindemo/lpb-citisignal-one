@@ -5,7 +5,6 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateSectionFromMetadata,
   decorateTemplateAndTheme,
   loadBlocks,
   loadCSS,
@@ -206,7 +205,6 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main);
-  decorateSectionFromMetadata(main); // custom
   scheduleSections(main);
   scheduleBlocks(main);
   decorateBlocks(main);
