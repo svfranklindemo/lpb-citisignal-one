@@ -1,22 +1,18 @@
 /* eslint-disable import/no-cycle */
 import { events } from '@dropins/tools/event-bus.js';
 import {
-  decorateBlocks,
+  sampleRUM,
+  loadHeader,
+  loadFooter,
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateBlocks,
   decorateTemplateAndTheme,
+  waitForFirstImage,
+  loadSection,
   loadSections,
   loadCSS,
-  loadFooter,
-  loadHeader,
-  sampleRUM,
-  waitForLCP,
-  getMetadata,
-  loadScript,
-  toCamelCase,
-  toClassName,
-  readBlockConfig,
 } from './aem.js';
 import { getProduct, getSkuFromUrl, trackHistory } from './commerce.js';
 import initializeDropins from './dropins.js';
