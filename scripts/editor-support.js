@@ -177,3 +177,15 @@ function attachEventListners(main) {
 }
 
 attachEventListners(document.querySelector('main'));
+
+document.querySelectorAll('.block.carousel').forEach((carousel) => {
+  // when entering edit mode stop scrolling
+  document.addEventListener('aue:ui-edit', () => {
+    stopInterval(carousel);
+  });
+
+  // when entering preview mode start scrolling
+  document.addEventListener('aue:ui-preview', () => {
+    startInterval(carousel);
+  });
+});
