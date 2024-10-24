@@ -468,35 +468,6 @@
     ]
   },
   {
-    "id": "simple-logo",
-    "fields": [
-      {
-        "component": "select",
-        "name": "simple_icon",
-        "value": "",
-        "label": "Logo/Icon",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Footer",
-            "value": ":footer-logo:"
-          },
-          {
-            "name": "Header",
-            "value": ":citisignal-header-logo:"
-          }
-        ]
-      },
-      {
-        "component": "aem-content",
-        "name": "simple_iconLink",
-        "value": "",
-        "label": "Link",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "product-list-page",
     "fields": [
       {
