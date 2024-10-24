@@ -1,4 +1,4 @@
-import { showSlide } from '../blocks/carousel/carousel.js';
+import { showSlide, startInterval, stopInterval } from '../blocks/carousel/carousel.js';
 import {
   decorateBlock,
   decorateBlocks,
