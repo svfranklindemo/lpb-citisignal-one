@@ -365,8 +365,8 @@ async function loadLazy(doc) {
   trackHistory();
 
   sampleRUM('lazy');
-  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  sampleRUM.observe(main.querySelectorAll('picture > img'));
+  //sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+  //sampleRUM.observe(main.querySelectorAll('picture > img'));
 
   // Implement experimentation preview pill
   if (
