@@ -32,7 +32,8 @@ export default async function decorate(block) {
     .then((contentfragment) => {
       let offer = '';
       if (contentfragment.data) {
-        offer = contentfragment.data.offerByPath.item;
+        console.log(conentfragment.data)
+        offer = contentfragment.data[Object.keys(contentfragment.data)[0]].item;
       }
       return offer;
     });
