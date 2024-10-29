@@ -249,6 +249,8 @@ async function loadEager(doc) {
     // eslint-disable-next-line import/no-relative-packages
     const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
     await runEager(document, { audiences: AUDIENCES }, pluginContext);
+
+    sampleRUM.enhance();
   }
 
   window.adobeDataLayer = window.adobeDataLayer || [];
@@ -363,10 +365,6 @@ async function loadLazy(doc) {
   }
 
   trackHistory();
-
-  sampleRUM('lazy');
-  //sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  //sampleRUM.observe(main.querySelectorAll('picture > img'));
 
   // Implement experimentation preview pill
   if (
