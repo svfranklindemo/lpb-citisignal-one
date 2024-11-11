@@ -1,23 +1,22 @@
 /* eslint-disable import/no-cycle */
 import { events } from '@dropins/tools/event-bus.js';
 import {
-  decorateBlocks,
+  sampleRUM,
+  loadHeader,
+  loadFooter,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateSectionFromMetadata,
+  decorateBlocks,
   decorateTemplateAndTheme,
-  loadBlocks,
+  waitForFirstImage,
+  loadSection,
+  loadSections,
   loadCSS,
-  loadFooter,
-  loadHeader,
-  sampleRUM,
-  waitForLCP,
   getMetadata,
   loadScript,
   toCamelCase,
-  toClassName,
-  readBlockConfig,
+  toClassName
 } from './aem.js';
 import { getProduct, getSkuFromUrl, trackHistory } from './commerce.js';
 import initializeDropins from './dropins.js';
@@ -197,6 +196,19 @@ function autolinkModals(element) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * @param {Element} main The container element
+ */
+function buildAutoBlocks() {
+  try {
+    // TODO: add auto block, if needed
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -205,10 +217,8 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  buildAutoBlocks(main);
   decorateSections(main);
-  decorateSectionFromMetadata(main); // custom
-  scheduleSections(main);
-  scheduleBlocks(main);
   decorateBlocks(main);
 }
 
@@ -239,6 +249,8 @@ async function loadEager(doc) {
     // eslint-disable-next-line import/no-relative-packages
     const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
     await runEager(document, { audiences: AUDIENCES }, pluginContext);
+
+    sampleRUM.enhance();
   }
 
   window.adobeDataLayer = window.adobeDataLayer || [];
@@ -311,7 +323,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    await waitForLCP(LCP_BLOCKS);
+    await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
   events.emit('eds/lcp', true);
@@ -334,7 +346,7 @@ async function loadLazy(doc) {
   autolinkModals(doc);
 
   const main = doc.querySelector('main');
-  await loadBlocks(main);
+  await loadSections(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -353,10 +365,6 @@ async function loadLazy(doc) {
   }
 
   trackHistory();
-
-  sampleRUM('lazy');
-  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  sampleRUM.observe(main.querySelectorAll('picture > img'));
 
   // Implement experimentation preview pill
   if (
