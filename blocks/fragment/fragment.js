@@ -6,7 +6,7 @@
 
 import { decorateMain, moveInstrumentation } from '../../scripts/scripts.js';
 
-import { loadSections } from '../../scripts/aem.js';
+import { loadBlocks } from '../../scripts/aem.js';
 
 /**
  * Loads a fragment.
@@ -31,7 +31,7 @@ export async function loadFragment(path) {
       resetAttributeBase('source', 'srcset');
 
       decorateMain(main);
-      await loadSections(main);
+      await loadBlocks(main);
       return main;
     }
   }
