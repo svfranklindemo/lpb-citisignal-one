@@ -32,7 +32,7 @@ export function startInterval(block) {
 }
 
 export function stopInterval(block) {
-  if (block.dataset.intervalId) {
+  if (block.dataset.intervalIdPercentage) {
     clearInterval(block.dataset.intervalIdPercentage);
     delete block.loadPercentage;
     delete block.dataset.intervalId;
