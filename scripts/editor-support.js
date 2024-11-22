@@ -1,4 +1,4 @@
-import { showSlide } from '../blocks/carousel/carousel.js';
+import { showSlide, startInterval, stopInterval } from '../blocks/carousel/carousel.js';
 import {
   decorateBlock,
   decorateBlocks,
@@ -6,7 +6,7 @@ import {
   decorateIcons,
   decorateSections,
   loadBlock,
-  loadBlocks,
+  loadSections,
 } from './aem.js';
 import { decorateRichtext } from './editor-support-rte.js';
 import { decorateMain } from './scripts.js';
@@ -71,7 +71,7 @@ async function applyChanges(event) {
       element.insertAdjacentElement('afterend', newMain);
       decorateMain(newMain);
       decorateRichtext(newMain);
-      await loadBlocks(newMain);
+      await loadSections(newMain);
       element.remove();
       newMain.style.display = null;
       // eslint-disable-next-line no-use-before-define
@@ -113,7 +113,7 @@ async function applyChanges(event) {
           decorateRichtext(newSection);
           decorateSections(parentElement);
           decorateBlocks(parentElement);
-          await loadBlocks(parentElement);
+          await loadSections(parentElement);
           element.remove();
           newSection.style.display = null;
         } else {
@@ -177,3 +177,19 @@ function attachEventListners(main) {
 }
 
 attachEventListners(document.querySelector('main'));
+
+document.querySelectorAll('.block.carousel').forEach((carousel) => {
+  stopInterval(carousel);
+});
+
+document.querySelectorAll('.block.carousel').forEach((carousel) => {
+  // when entering edit mode stop scrolling
+  document.addEventListener('aue:ui-edit', () => {
+    stopInterval(carousel);
+  });
+
+  // when entering preview mode start scrolling
+  document.addEventListener('aue:ui-preview', () => {
+    startInterval(carousel);
+  });
+});
