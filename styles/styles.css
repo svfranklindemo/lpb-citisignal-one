@@ -545,6 +545,10 @@ main .default-content-wrapper img {
   border-radius: var(--border-radius);
 }
 
+main .default-content.wrapper {
+  color: var(--text-color);
+}
+
 .icon {
   display: inline-block;
   height: 2.4rem;
