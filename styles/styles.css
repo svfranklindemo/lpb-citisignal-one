@@ -484,24 +484,6 @@ button:not([class^='elsie-']):disabled:hover {
   cursor: unset;
 }
 
-/* primary default button */
-main .default-content-wrapper .button-container a.primary {
-  background-color : var(--button-primary-background);
-  border: var(--button-primary-border);
-  color : var(--button-primary-color);
-  padding: var(--button-padding);
-  border-radius: var(--button-radius);
-}
-
-/* secondary default button */
-main .default-content-wrapper .button-container a.secondary {
-  background-color : var(--button-secondary-background);
-  border: var(--button-secondary-border);
-  color : var(--button-secondary-color);
-  padding: var(--button-padding);
-  border-radius: var(--button-radius);
-}
-
 a.button.secondary:hover,
 button:not([class^='elsie-']).secondary:hover {
   color: var(--color-brand-600);
@@ -539,19 +521,65 @@ main img {
   height: auto;
 }
 
-
-/* default content image inside main and columns*/
-main .default-content-wrapper img {
-  border-radius: var(--border-radius);
-}
-
+/* default content */
 main .default-content-wrapper {
   color: var(--text-color);
   background-color: var(--background-color);
   border: var(--border);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  
+}
+
+/* default content image */
+main .default-content-wrapper img {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* default content text */
+main .default-content-wrapper p:not(:has(:is(a.button , picture))) {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* default content title */
+main .default-content-wrapper > :is(h1,h2,h3,h4,h5,h6) {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);  
+}
+
+/* default content button */
+main .default-content-wrapper a.button {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* primary default button */
+main .default-content-wrapper a.button.primary {
+  background-color : var(--button-primary-background);
+  border: var(--button-primary-border);
+  color : var(--button-primary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-radius);
+}
+
+/* secondary default button */
+main .default-content-wrapper a.button.secondary {
+  background-color : var(--button-secondary-background);
+  border: var(--button-secondary-border);
+  color : var(--button-secondary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-radius);
 }
 
 .icon {

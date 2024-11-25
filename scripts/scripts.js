@@ -248,12 +248,26 @@ async function loadThemeSpreadSheetConfig() {
         let selector = '';
         if (Section.length > 0) selector = `.section.${Section}`;
         if (Block.length) {
-          if (Block === "default"){
-            selector += ` .default-content-wrapper`;
-          } else { 
-            selector += ` .block.${Block}`;   
+          // check default wrapper, text, image, button title
+          switch (Block) {
+            case "default":
+                selector += ` .default-content-wrapper`;
+                break;
+            case "image":
+                selector += ` .default-content-wrapper img`;
+                break;
+            case "text":
+                selector += `  p:not(:has(:is(a.button , picture)))`;
+                break;
+            case "button":
+                selector += ` .default-content-wrapper a.button`;
+                break;
+            case "title":
+                selector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6)`;
+              break;
+            default: 
+              selector += ` .block.${Block}`;   
           }
-        }
         selector += `{
         --${Property}: ${Value};
         }`;
