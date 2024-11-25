@@ -15,9 +15,9 @@
  :root {
   --primary-color: #8821f4;
   --secondary-color: #3C1268;
-  --button-radius: 12px;
+  --button-radius: 30px;
   --border-color: #eaeaea;
-  --border-radius: 30px;
+  --border-radius: 18px;
   /* default content image radius*/
   --default-image-border-radius: var(--border-radius);
 }
