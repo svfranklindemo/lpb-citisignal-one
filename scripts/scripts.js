@@ -231,7 +231,6 @@ function preloadFile(href, as) {
   document.head.appendChild(link);
 }
 
-
 async function loadThemeSpreadSheetConfig() {
   const theme = getMetadata('design') || 'default';
   const resp = await fetch(`/designs/${theme}.json?offset=0&limit=500`);
@@ -245,40 +244,42 @@ async function loadThemeSpreadSheetConfig() {
       if (Section.length === 0 && Block.length === 0)
         root.style.setProperty(`--${Property}`, `${Value}`);
       else {
-        let selector = '';
-        if (Section.length > 0) selector = `.section.${Section}`;
         if (Block.length) {
-          // check default wrapper, text, image, button title
-          switch (Block) {
-            case "default":
-                selector += ` .default-content-wrapper`;
+          Block.split(',').forEach((entry) => {
+            let selector = '';
+            if (Section.length > 0) selector = `.section.${Section}`;
+            entry = entry.trim();
+            // check default wrapper, text, image, button title
+            switch (entry) {
+              case "default":
+                  selector += ` .default-content-wrapper`;
+                  break;
+              case "image":
+                  selector += ` .default-content-wrapper img`;
+                  break;
+              case "text":
+                  selector += `  p:not(:has(:is(a.button , picture)))`;
+                  break;
+              case "button":
+                  selector += ` .default-content-wrapper a.button`;
+                  break;
+              case "title":
+                  selector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6)`;
                 break;
-            case "image":
-                selector += ` .default-content-wrapper img`;
-                break;
-            case "text":
-                selector += `  p:not(:has(:is(a.button , picture)))`;
-                break;
-            case "button":
-                selector += ` .default-content-wrapper a.button`;
-                break;
-            case "title":
-                selector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6)`;
-              break;
-            default: 
-              selector += ` .block.${Block}`;   
-          }
+              default: 
+                selector += ` .block.${entry}`;  
+            }
+            selector += ` {
+            --${Property}: ${Value};
+            }`;
+            const sheet = window.document.styleSheets[0];
+            sheet.insertRule(selector, sheet.cssRules.length);
+          });
         }
-        selector += `{
-        --${Property}: ${Value};
-        }`;
-        const sheet = window.document.styleSheets[0];
-        sheet.insertRule(selector, sheet.cssRules.length);
       }
     });
   }
 }
-
 
 /**
  * Loads everything needed to get to LCP.
