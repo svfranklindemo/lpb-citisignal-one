@@ -18,6 +18,8 @@ main .hero-container > div {
   box-sizing: border-box;
   color: #fff;
   z-index: 0;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
 }
 
 .hero.medium {

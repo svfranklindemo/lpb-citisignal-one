@@ -20,6 +20,7 @@
   --border-radius: 18px;
   /* default content image radius*/
   --default-image-border-radius: var(--border-radius);
+  --box-shadow: none;
 }
 
 :root,
