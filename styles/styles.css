@@ -545,8 +545,13 @@ main .default-content-wrapper img {
   border-radius: var(--border-radius);
 }
 
-main .default-content.wrapper {
+main .default-content-wrapper {
   color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  
 }
 
 .icon {
