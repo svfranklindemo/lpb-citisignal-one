@@ -268,6 +268,7 @@ async function loadThemeSpreadSheetConfig() {
             default: 
               selector += ` .block.${Block}`;   
           }
+        }
         selector += `{
         --${Property}: ${Value};
         }`;
