@@ -247,7 +247,13 @@ async function loadThemeSpreadSheetConfig() {
       else {
         let selector = '';
         if (Section.length > 0) selector = `.section.${Section}`;
-        if (Block.length) selector += ` .block.${Block}`;
+        if (Block.length) {
+          if (Block === "default"){
+            selector += ` .default-content-wrapper`;
+          } else { 
+            selector += ` .block.${Block}`;   
+          }
+        }
         selector += `{
         --${Property}: ${Value};
         }`;

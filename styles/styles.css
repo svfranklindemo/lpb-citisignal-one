@@ -13,11 +13,12 @@
  */
 
  :root {
+  /* general properties */
   --primary-color: #8821f4;
   --secondary-color: #3C1268;
   --text-color: var(--color-black-100);
-  --font-size: var(--body-font-size-xxs)
-
+  --font-size: var(--body-font-size-xxs);
+  /* button properties */
   --button-radius: 30px;
   --button-padding: 10px 30px;
   --button-primary-border: none;
@@ -26,23 +27,10 @@
   --button-secondary-border: 2px solid var(--secondary-color);
   --button-secondary-background: none;
   --button-secondary-color: var(--secondary-color);
-
-  /* border stuff */
+  /* borders */
   --border: none;
   --border-radius: 18px;
   --box-shadow: none;
-
-  /* default content image radius*/
-  --default-image-border-radius: var(--border-radius);
-  /* default button */
-  --default-button-radius: var(--button-radius);
-  --default-button-padding: var(--button-padding);
-  --default-button-primary-border: var(--button-primary-border);
-  --default-button-primary-background: var(--button-primary-background);
-  --default-button-primary-color: var(--button-primary-color);
-  --default-button-secondary-border: var(--button-secondary-border);
-  --default-button-secondary-background: var(--button-secondary-background);
-  --default-button-secondary-color: var(--button-secondary-color);
 }
 
 :root,
@@ -498,20 +486,20 @@ button:not([class^='elsie-']):disabled:hover {
 
 /* primary default button */
 main .default-content-wrapper .button-container a.primary {
-  background-color : var(--default-button-primary-background);
-  border: var(--default-button-primary-border);
-  color : var(--default-button-primary-color);
-  padding: var(--default-button-padding);
-  border-radius: var(--default-button-radius);
+  background-color : var(--button-primary-background);
+  border: var(--button-primary-border);
+  color : var(--button-primary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-radius);
 }
 
 /* secondary default button */
 main .default-content-wrapper .button-container a.secondary {
-  background-color : var(--default-button-secondary-background);
-  border: var(--default-button-secondary-border);
-  color : var(--default-button-secondary-color);
-  padding: var(--default-button-padding);
-  border-radius: var(--default-button-radius);
+  background-color : var(--button-secondary-background);
+  border: var(--button-secondary-border);
+  color : var(--button-secondary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-radius);
 }
 
 a.button.secondary:hover,
@@ -553,9 +541,8 @@ main img {
 
 
 /* default content image inside main and columns*/
-.columns.block img,
 main .default-content-wrapper img {
-  border-radius: var(--default-image-border-radius);
+  border-radius: var(--border-radius);
 }
 
 .icon {
