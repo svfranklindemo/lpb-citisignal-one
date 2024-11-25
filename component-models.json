@@ -211,6 +211,18 @@
     ]
   },
   {
+    "id": "section-marketing",
+    "fields": [
+      {
+        "component": "text",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "multi": true
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
