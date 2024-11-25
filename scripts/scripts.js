@@ -231,6 +231,34 @@ function preloadFile(href, as) {
   document.head.appendChild(link);
 }
 
+
+async function loadThemeSpreadSheetConfig() {
+  const theme = getMetadata('design') || 'default';
+  const resp = await fetch(`/designs/${theme}.json?offset=0&limit=500`);
+  if (resp.status === 200) {
+    const json = await resp.json();
+    const tokens = json.data || json.default.data;
+    const root = document.querySelector(':root');
+    tokens.forEach((e) => {
+      const { Property, Value, Section, Block } = e;
+      console.log(Section, Block);
+      if (Section.length === 0 && Block.length === 0)
+        root.style.setProperty(`--${Property}`, `${Value}`);
+      else {
+        let selector = '';
+        if (Section.length > 0) selector = `.section.${Section}`;
+        if (Block.length) selector += ` .block.${Block}`;
+        selector += `{
+        --${Property}: ${Value};
+        }`;
+        const sheet = window.document.styleSheets[0];
+        sheet.insertRule(selector, sheet.cssRules.length);
+      }
+    });
+  }
+}
+
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -238,6 +266,7 @@ function preloadFile(href, as) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   await initializeDropins();
+  await loadThemeSpreadSheetConfig();
   decorateTemplateAndTheme();
 
   // Instrument experimentation plugin
