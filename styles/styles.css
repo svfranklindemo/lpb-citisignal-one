@@ -16,7 +16,7 @@
   --primary-color: #8821f4;
   --secondary-color: #3C1268;
   --button-radius: 12px;
-  --border-color: #eaeaea;
+  --border: none;
   --border-radius: 18px;
   /* default content image radius*/
   --default-image-border-radius: var(--border-radius);
