@@ -1,15 +1,15 @@
 .accordion {
   border: 1px solid var(--border-color);
-  border-radius: 18px;
+  border-radius: var(--border-radius);
 }
 .accordion details:first-of-type summary {
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
 
 .accordion details:last-of-type summary {
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
 .accordion details:last-of-type[open] summary {
@@ -48,7 +48,7 @@
   content: '';
   position: absolute;
   top: 50%;
-  right: 18px;
+  right: var(--border-radius);
   transform: translateY(-50%) rotate(135deg);
   width: 9px;
   height: 9px;
