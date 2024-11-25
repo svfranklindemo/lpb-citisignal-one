@@ -18,6 +18,10 @@
   --secondary-color: #3C1268;
   --text-color: var(--color-black-100);
   --font-size: var(--body-font-size-xxs);
+  /* borders */
+  --border: none;
+  --border-radius: 18px;
+  --box-shadow: none;
   /* button properties */
   --button-radius: 30px;
   --button-padding: 10px 30px;
@@ -27,10 +31,6 @@
   --button-secondary-border: 2px solid var(--secondary-color);
   --button-secondary-background: none;
   --button-secondary-color: var(--secondary-color);
-  /* borders */
-  --border: none;
-  --border-radius: 18px;
-  --box-shadow: none;
 }
 
 :root,
@@ -374,8 +374,7 @@ main pre {
 /* buttons inside blocks */
 .block a:any-link.button {
   width: fit-content;
-  padding: 10px;
-  padding-inline: 30px;
+  padding: var(--button-padding);
   background-color: var(--primary-color);
   border-radius: var(--button-radius);
 }
