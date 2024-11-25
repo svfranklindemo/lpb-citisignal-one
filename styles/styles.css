@@ -17,9 +17,9 @@
   --secondary-color: #3C1268;
   --button-radius: 12px;
   --border-color: #eaeaea;
-  --border-radius: 18px;
+  --border-radius: 30px;
   /* default content image radius*/
-  --default-image-radius: var(--border-radius);
+  --default-image-border-radius: var(--border-radius);
 }
 
 :root,
@@ -360,12 +360,13 @@ main pre {
   white-space: pre;
 }
 
+/* buttons inside blocks */
 .block a:any-link.button {
   width: fit-content;
   padding: 10px;
   padding-inline: 30px;
   background-color: var(--primary-color);
-  border-radius: 30px;
+  border-radius: var(--button-radius);
 }
 
 /* links */
@@ -520,7 +521,7 @@ main img {
 /* default content image inside main and columns*/
 .columns.block img,
 main .default-content-wrapper img {
-  border-radius: var(--default-image-radius);
+  border-radius: var(--default-image-border-radius);
 }
 
 .icon {
