@@ -200,7 +200,7 @@
 
 html,
 body {
-  font-size: var(--body-font-size-xxs);
+  font-size: var(--font-size);
 }
 
 body {
