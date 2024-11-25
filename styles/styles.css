@@ -15,7 +15,7 @@
  :root {
   --primary-color: #8821f4;
   --secondary-color: #3C1268;
-  --button-radius: 30px;
+  --button-radius: 12px;
   --border-color: #eaeaea;
   --border-radius: 18px;
   /* default content image radius*/
@@ -538,6 +538,7 @@ main .default-content-wrapper img {
 /* sections */
 main .section {
   padding: 2rem 15px;
+  background-color: var(--background-color);
 }
 
 main .section.extra-width > div {
