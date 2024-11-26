@@ -1,6 +1,19 @@
+.accordion.block {
+  --summary-background: var(--primary-color);
+  --summary-background-open: var(--color-brand-300);
+  --summary-background-hover: var(--color-brand-700);
+  --summary-color: white;
+  --summary-padding: 16px 16px;
+  --details-background: var(--background-color);
+  --details-color: var(--text-color);
+  --details-padding: 16px 16px;
+  --separator-line: var(--border);
+}
+
 .accordion {
   border: var(--border);
   border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
 .accordion details:first-of-type summary {
   border-top-left-radius: var(--border-radius);
@@ -19,25 +32,37 @@
 
 .accordion details summary {
   position: relative;
-  padding: 0 16px;
+  padding: var(--summary-padding);
   padding-right: 48px;
   cursor: pointer;
   list-style: none;
   overflow: auto;
   transition: background-color 0.2s;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--summary-background);
+  color: var(--summary-color);
   border: 0;
-  border-bottom: var(--border);
+
+}
+
+.accordion details:not(:last-child) summary  {
+  border-bottom: var(--separator-line);
+}
+
+.accordion details[open] summary  {
+  border-bottom: var(--separator-line);
+}
+
+/* remove any margins around text */
+.accordion details summary p {
+  margin: 0;
 }
 
 .accordion details[open] summary {
-  /* background-color: lightgray; */
+  background-color: var(--summary-background-open);
 }
 
 .accordion details summary:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--summary-background-hover);
 }
 
 .accordion details summary::-webkit-details-marker {
@@ -48,7 +73,7 @@
   content: '';
   position: absolute;
   top: 50%;
-  right: var(--border-radius);
+  right: 30px;
   transform: translateY(-50%) rotate(135deg);
   width: 9px;
   height: 9px;
@@ -59,13 +84,25 @@
 
 .accordion details[open] summary::after {
   transform: translateY(-50%) rotate(-45deg);
+  content:'';
 }
 
 .accordion details .accordion-item-body {
-  padding: 0 16px;
+  padding: 0;
+}
+
+.accordion details .accordion-item-body p {
+  margin: 0;
+  padding: var(--details-padding)
 }
 
 .accordion details[open] .accordion-item-body {
-  /* border-top: 1px solid grey; */
-  background-color: var(--background-color);
+  background-color: var(--details-background);
+  color: var(--details-color);
 }
+
+.accordion details[open]:last-child .accordion-item-body {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
