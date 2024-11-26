@@ -234,22 +234,34 @@ function preloadFile(href, as) {
 async function loadThemeSpreadSheetConfig() {
   const theme = getMetadata('design') || 'default';
   const resp = await fetch(`/designs/${theme}.json?offset=0&limit=500`);
+  
   if (resp.status === 200) {
+    // create style element that should be last in the head
+    document.head.insertAdjacentHTML('beforeend', `<style id="style-overrides"></style>`);
+    const sheet = window.document.styleSheets[document.styleSheets.length - 1];
+    // load spreadsheet
     const json = await resp.json();
     const tokens = json.data || json.default.data;
     const root = document.querySelector(':root');
+    // go through the entries and create the rule set 
+    let ruleSet = new Map();
     tokens.forEach((e) => {
       const { Property, Value, Section, Block } = e;
-      console.log(Section, Block);
-      if (Section.length === 0 && Block.length === 0)
-        root.style.setProperty(`--${Property}`, `${Value}`);
-      else {
+      let selector = '';
+      if (Section.length === 0 && Block.length === 0) {
+        selector = ':root';
+      } else {
+        // define the section selector if set
+        if (Section.length > 0) {
+          selector = `main .section.${Section}`;
+        } else {
+          selector = `main .section`;
+        }
+        // define the block selector if set
         if (Block.length) {
           Block.split(',').forEach((entry) => {
-            let selector = '';
-            if (Section.length > 0) selector = `.section.${Section}`;
             entry = entry.trim();
-            // check default wrapper, text, image, button title
+            // special cases: default wrapper, text, image, button, title
             switch (entry) {
               case "default":
                   selector += ` .default-content-wrapper`;
@@ -258,7 +270,7 @@ async function loadThemeSpreadSheetConfig() {
                   selector += ` .default-content-wrapper img`;
                   break;
               case "text":
-                  selector += `  p:not(:has(:is(a.button , picture)))`;
+                  selector += ` .default-content-wrapper p:not(:has(:is(a.button , picture)))`;
                   break;
               case "button":
                   selector += ` .default-content-wrapper a.button`;
@@ -269,14 +281,19 @@ async function loadThemeSpreadSheetConfig() {
               default: 
                 selector += ` .block.${entry}`;  
             }
-            selector += ` {
-            --${Property}: ${Value};
-            }`;
-            const sheet = window.document.styleSheets[0];
-            sheet.insertRule(selector, sheet.cssRules.length);
           });
-        }
+        } 
       }
+      // add the rule to the ruleSet
+      if (!ruleSet.has(selector)) {
+        ruleSet.set(selector,[`--${Property}: ${Value};`])
+      } else {
+        ruleSet.get(selector).push(`--${Property}: ${Value};`);
+      }
+    });
+    // finally write the rule sets to the style element
+    ruleSet.forEach((rules, selector) => {
+      sheet.insertRule(`${selector} {${rules.join(';')}}`, sheet.cssRules.length);
     });
   }
 }

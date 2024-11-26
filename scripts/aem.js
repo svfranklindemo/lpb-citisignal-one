@@ -227,7 +227,9 @@ async function loadCSS(href) {
       link.href = href;
       link.onload = resolve;
       link.onerror = reject;
-      document.head.append(link);
+      const overrides = document.getElementById('style-overrides');
+      if (overrides) overrides.before(link);
+      else document.head.append(link);
     } else {
       resolve();
     }
