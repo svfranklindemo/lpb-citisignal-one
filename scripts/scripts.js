@@ -231,6 +231,14 @@ function preloadFile(href, as) {
   document.head.appendChild(link);
 }
 
+function addOverlayRule(ruleSet, selector, property, value) {
+  if (!ruleSet.has(selector)) {
+    ruleSet.set(selector,[`--${property}: ${value};`])
+  } else {
+    ruleSet.get(selector).push(`--${property}: ${value};`);
+  }
+}
+
 async function loadThemeSpreadSheetConfig() {
   const theme = getMetadata('design') || 'default';
   const resp = await fetch(`/designs/${theme}.json?offset=0&limit=500`);
@@ -249,7 +257,8 @@ async function loadThemeSpreadSheetConfig() {
       const { Property, Value, Section, Block } = e;
       let selector = '';
       if (Section.length === 0 && Block.length === 0) {
-        selector = ':root';
+        // :root { --<property>: <value>; }
+        addOverlayRule(ruleSet, ':root', Property, Value);
       } else {
         // define the section selector if set
         if (Section.length > 0) {
@@ -261,37 +270,39 @@ async function loadThemeSpreadSheetConfig() {
         if (Block.length) {
           Block.split(',').forEach((entry) => {
             entry = entry.trim();
+            let blockSelector = selector;
             // special cases: default wrapper, text, image, button, title
             switch (entry) {
               case "default":
-                  selector += ` .default-content-wrapper`;
+                  blockSelector += ` .default-content-wrapper`;
                   break;
               case "image":
-                  selector += ` .default-content-wrapper img`;
+                  blockSelector += ` .default-content-wrapper img`;
                   break;
               case "text":
-                  selector += ` .default-content-wrapper p:not(:has(:is(a.button , picture)))`;
+                  blockSelector += ` .default-content-wrapper p:not(:has(:is(a.button , picture)))`;
                   break;
               case "button":
-                  selector += ` .default-content-wrapper a.button`;
+                  blockSelector += ` .default-content-wrapper a.button`;
                   break;
               case "title":
-                  selector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6)`;
+                  blockSelector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6)`;
                 break;
               default: 
-                selector += ` .block.${entry}`;  
+                blockSelector += ` .block.${entry}`;  
             }
+            // main .section.<section-name> .block.<block-name> { --<property>: <value>; }
+            // or any of the spacial cases above
+            addOverlayRule(ruleSet, blockSelector, Property, Value);
           });
-        } 
-      }
-      // add the rule to the ruleSet
-      if (!ruleSet.has(selector)) {
-        ruleSet.set(selector,[`--${Property}: ${Value};`])
-      } else {
-        ruleSet.get(selector).push(`--${Property}: ${Value};`);
+        } else  {
+          // main .section.<section-name> { --<property>: <value>; }
+          addOverlayRule(ruleSet, selector, Property, Value);
+        }
       }
     });
     // finally write the rule sets to the style element
+    console.log(ruleSet);
     ruleSet.forEach((rules, selector) => {
       sheet.insertRule(`${selector} {${rules.join(';')}}`, sheet.cssRules.length);
     });
