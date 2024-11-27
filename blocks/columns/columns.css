@@ -1,3 +1,7 @@
+.block.columns {
+  font: normal normal 300 var(--text-size)/2.4rem var(--text-font-family);
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
