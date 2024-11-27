@@ -25,7 +25,7 @@
   /* button properties */
   --button-radius: 30px;
   --button-padding: 10px 30px;
-  --button-primary-border: none;
+  --button-primary-border: 2px solid var(--primary-color);
   --button-primary-background: var(--primary-color);
   --button-primary-color: white;
   --button-secondary-border: 2px solid var(--secondary-color);
