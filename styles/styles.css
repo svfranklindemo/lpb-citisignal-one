@@ -569,7 +569,7 @@ main .default-content-wrapper p:not(:has(:is(a.button , picture))) {
   border-radius: var(--text-border-radius);
   box-shadow: var(--text-box-shadow);
   padding: var(--padding);
-  font-size: var(--text-size);
+  font: normal normal 300 var(--text-size)/2.4rem var(--text-font-family);
 }
 
 /* default content title */
