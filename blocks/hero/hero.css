@@ -67,8 +67,7 @@ main .hero-container > div {
 
 /* Typography Styles */
 .hero h1 {
-  /* font-family: "Open Sans"; */
-  font-size: 36px;
+  font-size: var(--heading-1-size);
   font-weight: 800;
   line-height: 45px;
 }
@@ -79,6 +78,7 @@ main .hero-container > div {
 .hero h4,
 .hero h5,
 .hero h6 {
+  font-family:var(--heading-font-family);
   letter-spacing: 0.04em;
   line-height: normal;
 }
