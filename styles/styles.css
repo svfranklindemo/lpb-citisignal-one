@@ -527,6 +527,7 @@ main .default-content-wrapper {
   border: var(--border);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  padding: var(--padding);
 }
 
 /* default content image */
@@ -543,6 +544,7 @@ main .default-content-wrapper p:not(:has(:is(a.button , picture))) {
   border: var(--border);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  padding: var(--padding);
 }
 
 /* default content title */
@@ -551,7 +553,8 @@ main .default-content-wrapper > :is(h1,h2,h3,h4,h5,h6) {
   background-color: var(--background-color);
   border: var(--border);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);  
+  box-shadow: var(--box-shadow); 
+  padding: var(--padding);
 }
 
 /* default content button */
