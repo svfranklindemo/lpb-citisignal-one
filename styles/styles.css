@@ -572,7 +572,7 @@ main .default-content-wrapper p:not(:has(:is(a.button , picture))) {
 }
 
 /* default content title */
-.columns.block
+.columns.block :is(h1,h2,h3,h4,h5,h6),
 main .default-content-wrapper > :is(h1,h2,h3,h4,h5,h6) {
   color: var(--heading-color);
   background-color: var(--background-color);
@@ -583,12 +583,14 @@ main .default-content-wrapper > :is(h1,h2,h3,h4,h5,h6) {
 }
 
 /* default content button */
+.columns.block a.button,
 main .default-content-wrapper a.button {
   color: var(--text-color);
   background-color: var(--background-color);
 }
 
 /* primary default button */
+.columns.block a.button.primary,
 main .default-content-wrapper a.button.primary {
   background-color : var(--button-primary-background);
   border: var(--button-primary-border);
@@ -599,6 +601,7 @@ main .default-content-wrapper a.button.primary {
 }
 
 /* secondary default button */
+.columns.block a.button.secondary,
 main .default-content-wrapper a.button.secondary {
   background-color : var(--button-secondary-background);
   border: var(--button-secondary-border);
