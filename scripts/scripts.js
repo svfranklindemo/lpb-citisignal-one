@@ -240,7 +240,7 @@ function addOverlayRule(ruleSet, selector, property, value) {
 }
 
 async function loadThemeSpreadSheetConfig() {
-  const theme = getMetadata('design') || 'default';
+  const theme = getMetadata('design');
   const resp = await fetch(`/designs/${theme}.json?offset=0&limit=500`);
   
   if (resp.status === 200) {
