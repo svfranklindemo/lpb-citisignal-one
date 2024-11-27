@@ -7,7 +7,7 @@
   --details-background: var(--background-color);
   --details-color: var(--text-color);
   --details-padding: 16px 16px;
-  --separator-line: var(--border);
+  --separator-line: 1px solid white;
 }
 
 .accordion {
