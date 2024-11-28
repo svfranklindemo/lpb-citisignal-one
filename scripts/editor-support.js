@@ -196,19 +196,34 @@ function attachEventListners(main) {
 
 attachEventListners(document.querySelector('main'));
 
-document.querySelectorAll('.block.carousel').forEach((carousel) => {
-  stopInterval(carousel);
+// wait for all caorousels to be loaded before stopping the interval
+document.querySelectorAll('.carousel').forEach((carousel) => {
+
+  const callback = (mutationList, observer) => {
+    for (const mutation of mutationList) {
+      if (mutation.type === "attributes" && mutation.attributeName === "data-block-status" &&
+         mutation.target.getAttribute("data-block-status") === "loaded"){
+          stopInterval(mutation.target);
+          observer.disconnect();
+      }
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(carousel, { attributes: true, childList: false, subtree: false });
 });
 
-document.querySelectorAll('.block.carousel').forEach((carousel) => {
-  // when entering edit mode stop scrolling
-  document.addEventListener('aue:ui-edit', () => {
-    stopInterval(carousel);
+// when entering edit mode stop scrolling
+document.addEventListener('aue:ui-edit', () => {
+  document.querySelectorAll('.block.carousel').forEach( (carousel) => {
+      stopInterval(carousel);
   });
+});
 
-  // when entering preview mode start scrolling
-  document.addEventListener('aue:ui-preview', () => {
-    startInterval(carousel);
+// when entering preview mode start scrolling
+document.addEventListener('aue:ui-preview', () => {
+  document.querySelectorAll('.block.carousel').forEach( (carousel) => {
+      startInterval(carousel);
   });
 });
 
