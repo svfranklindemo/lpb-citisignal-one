@@ -203,8 +203,7 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
     for (const mutation of mutationList) {
       if (mutation.type === "attributes" && mutation.attributeName === "data-block-status" &&
          mutation.target.getAttribute("data-block-status") === "loaded"){
-          stopInterval(mutation.target);
-          observer.disconnect();
+          stopInterval(carousel);
       }
     }
   };
