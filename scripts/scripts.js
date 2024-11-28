@@ -278,16 +278,16 @@ async function loadThemeSpreadSheetConfig() {
                   blockSelector += ` .default-content-wrapper`;
                   break;
               case "image":
-                  blockSelector += ` .default-content-wrapper img`;
+                  blockSelector += ` .default-content-wrapper img, ${selector} .block.columns img`;
                   break;
               case "text":
-                  blockSelector += ` .default-content-wrapper p:not(:has(:is(a.button , picture)))`;
+                  blockSelector += ` .default-content-wrapper p:not(:has(:is(a.button , picture))), ${selector} .columns.block p:not(:has(:is(a.button , picture)))`;
                   break;
               case "button":
                   blockSelector += ` .default-content-wrapper a.button`;
                   break;
               case "title":
-                  blockSelector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6)`;
+                  blockSelector += ` .default-content-wrapper :is(h1,h2,h3,h4,h5,h6), ${selector} .columns.block :is(h1,h2,h3,h4,h5,h6)`;
                 break;
               default: 
                 blockSelector += ` .block.${entry}`;  
