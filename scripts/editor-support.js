@@ -55,8 +55,8 @@ function setUEFilter(element, filter) {
 
 function updateUEInstrumentation() {
   const main = document.querySelector('main');
-
-  if (document.querySelector('body[class^=marketing]')) {
+  const template = document.head.querySelector("[name=template]").getAttribute("content");
+  if (template === "marketing") {
     // use marketing specific section
     setUEFilter(main, 'main-marketing');
   }
@@ -197,7 +197,7 @@ function attachEventListners(main) {
 attachEventListners(document.querySelector('main'));
 
 // wait for all caorousels to be loaded before stopping the interval
-/* document.querySelectorAll('.carousel').forEach((carousel) => {
+document.querySelectorAll('.carousel').forEach((carousel) => {
 
   const observer = new MutationObserver((mutationList, observer) => {
     for (const mutation of mutationList) {
@@ -208,7 +208,7 @@ attachEventListners(document.querySelector('main'));
     }
   });
   observer.observe(carousel, { attributes: true, childList: false, subtree: false });
-}); */
+});
 
 
 // when entering edit mode stop scrolling
