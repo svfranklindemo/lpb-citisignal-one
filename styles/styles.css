@@ -16,6 +16,10 @@
   /* general properties */
   --primary-color: #8821f4;
   --secondary-color: #3C1268;
+  /* general borders */
+  --border: none;
+  --border-radius: 18px;
+  --box-shadow: none;
   /* text/title properties */
   --text-color: var(--color-black-100);
   --text-size: 1.6rem;
@@ -23,6 +27,7 @@
   --text-border: none;
   --text-border-radius: 0;
   --text-box-shadow: none;
+  /* heading properties */
   --heading-1-size: 6rem;
   --heading-2-size: 4.8rem;
   --heading-3-size: 3.4rem;
@@ -33,14 +38,6 @@
   --heading-border: none;
   --heading-border-radius: 0;
   --heading-box-shadow: none;
-  /* default content wrapper properties */
-  --default-content-border: none;
-  --default-content-border-radius: 0;
-  --default-content-box-shadow: none;
-  /* general borders */
-  --border: none;
-  --border-radius: 18px;
-  --box-shadow: none;
   /* button properties */
   --button-radius: 30px;
   --button-padding: 10px 30px;
@@ -50,6 +47,20 @@
   --button-secondary-border: 2px solid var(--secondary-color);
   --button-secondary-background: none;
   --button-secondary-color: var(--secondary-color);
+  /* default content wrapper properties */
+  --default-content-border: none;
+  --default-content-border-radius: 0;
+  --default-content-box-shadow: none;
+  /* accordion only properties */
+  --accordion-summary-background: var(--primary-color);
+  --accordion-summary-background-open: var(--color-brand-300);
+  --accordion-summary-background-hover: var(--color-brand-700);
+  --accordion-summary-color: white;
+  --accordion-summary-padding: 16px 16px;
+  --accordion-details-background: var(--background-color);
+  --accordion-details-color: var(--text-color);
+  --accordion-details-padding: 16px 16px;
+  --accordion-separator-line: 1px solid white;
 }
 
 :root,
