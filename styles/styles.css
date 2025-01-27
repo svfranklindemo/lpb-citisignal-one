@@ -13,17 +13,61 @@
  */
 
  :root {
+  /* general properties */
   --primary-color: #8821f4;
   --secondary-color: #3C1268;
-  --button-radius: 12px;
-  --border-color: #eaeaea;
+  /* general borders */
+  --border: none;
+  --border-radius: 18px;
+  --box-shadow: none;
+  /* text/title properties */
+  --text-color: var(--color-black-100);
+  --text-size: 1.6rem;
+  --text-font-family: 'open-sans', sans-serif;
+  --text-border: none;
+  --text-border-radius: 0;
+  --text-box-shadow: none;
+  /* heading properties */
+  --heading-1-size: 6rem;
+  --heading-2-size: 4.8rem;
+  --heading-3-size: 3.4rem;
+  --heading-4-size: 2.4rem;
+  --heading-5-size: 2rem;
+  --heading-6-size: 2rem;
+  --heading-color: var(--text-color);
+  --heading-border: none;
+  --heading-border-radius: 0;
+  --heading-box-shadow: none;
+  /* button properties */
+  --button-radius: 30px;
+  --button-padding: 10px 30px;
+  --button-primary-border: 2px solid var(--primary-color);
+  --button-primary-background: var(--primary-color);
+  --button-primary-color: white;
+  --button-secondary-border: 2px solid var(--secondary-color);
+  --button-secondary-background: none;
+  --button-secondary-color: var(--secondary-color);
+  /* default content wrapper properties */
+  --default-content-border: none;
+  --default-content-border-radius: 0;
+  --default-content-box-shadow: none;
+  /* accordion only properties */
+  --accordion-summary-background: var(--primary-color);
+  --accordion-summary-background-open: var(--color-brand-300);
+  --accordion-summary-background-hover: var(--color-brand-700);
+  --accordion-summary-color: white;
+  --accordion-summary-padding: 16px 16px;
+  --accordion-details-background: var(--background-color);
+  --accordion-details-color: var(--text-color);
+  --accordion-details-padding: 16px 16px;
+  --accordion-separator-line: 1px solid white;
 }
 
 :root,
 .dropin-design.dropin-design {
   /* Font Family  */
   --heading-font-family: 'open-sans', sans-serif;
-  --type-base-font-family: 'open-sans', sans-serif;
+  --type-base-font-family: var(--text-font-family);
 
   /* body sizes */
   --body-font-size-xxs: 10px;
@@ -119,21 +163,21 @@
   --spacing-huge: 120px;
   --spacing-xhuge: 144px;
   --spacing-xxhuge: 192px;
-  --type-display-1-font: normal normal 300 6rem/7.2rem var(--heading-font-family);
+  --type-display-1-font: normal normal 300 var(--heading-1-size)/7.2rem var(--heading-font-family);
   --type-display-1-letter-spacing: 0.04em;
-  --type-display-2-font: normal normal 300 4.8rem/5.6rem var(--heading-font-family);
+  --type-display-2-font: normal normal 300 var(--heading-2-size)/5.6rem var(--heading-font-family);
   --type-display-2-letter-spacing: 0.04em;
-  --type-display-3-font: normal normal 300 3.4rem/4rem var(--heading-font-family);
+  --type-display-3-font: normal normal 300 var(--heading-3-size)/4rem var(--heading-font-family);
   --type-display-3-letter-spacing: 0.04em;
-  --type-headline-1-font: normal normal 400 2.4rem/3.2rem var(--heading-font-family);
+  --type-headline-1-font: normal normal 400 var(--heading-4-size)/3.2rem var(--heading-font-family);
   --type-headline-1-letter-spacing: 0.04em;
-  --type-headline-2-default-font: normal normal 300 2rem/2.4rem var(--heading-font-family);
+  --type-headline-2-default-font: normal normal 300 var(--heading-6-size)/2.4rem var(--heading-font-family);
   --type-headline-2-default-letter-spacing: 0.04em;
-  --type-headline-2-strong-font: normal normal 400 2rem/2.4rem var(--heading-font-family);
+  --type-headline-2-strong-font: normal normal 400 var(--heading-5-size)/2.4rem var(--heading-font-family);
   --type-headline-2-strong-letter-spacing: 0.04em;
-  --type-body-1-default-font: normal normal 300 1.6rem/2.4rem var(--type-base-font-family);
+  --type-body-1-default-font: normal normal 300 var(--text-size)/2.4rem var(--type-base-font-family);
   --type-body-1-default-letter-spacing: 0.04em;
-  --type-body-1-strong-font: normal normal 400 1.6rem/2.4rem var(--type-base-font-family);
+  --type-body-1-strong-font: normal normal 400 2rem/2.4rem var(--type-base-font-family);
   --type-body-1-strong-letter-spacing: 0.04em;
   --type-body-1-emphasized-font: normal normal 700 1.6rem/2.4rem var(--type-base-font-family);
   --type-body-1-emphasized-letter-spacing: 0.04em;
@@ -174,6 +218,7 @@
 
 html,
 body {
+  /* default is 10px */
   font-size: var(--body-font-size-xxs);
 }
 
@@ -181,7 +226,7 @@ body {
   font: var(--type-body-1-default-font);
   letter-spacing: var(--type-body-1-default-letter-spacing);
   margin: 0;
-  color: var(--color-black-100);
+  color: var(--text-color);
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
@@ -255,6 +300,7 @@ h6 {
   margin: 0;
 }
 
+/* remove until we have design vars for it 
 .section .default-content-wrapper h1::after,
 .section .default-content-wrapper h2::after,
 .section .default-content-wrapper h3::after,
@@ -268,6 +314,7 @@ h6 {
   min-width: 84px;
   width: fit-content;
 }
+*/
 
 .section.bg-primary .default-content-wrapper h1::after,
 .section.bg-primary .default-content-wrapper h2::after,
@@ -357,12 +404,12 @@ main pre {
   white-space: pre;
 }
 
+/* buttons inside blocks */
 .block a:any-link.button {
   width: fit-content;
-  padding: 10px;
-  padding-inline: 30px;
+  padding: var(--button-padding);
   background-color: var(--primary-color);
-  border-radius: 30px;
+  border-radius: var(--button-radius);
 }
 
 /* links */
@@ -469,13 +516,6 @@ button:not([class^='elsie-']):disabled:hover {
   cursor: unset;
 }
 
-main a.button.secondary,
-button.button.secondary {
-  background-color: unset;
-  border: var(--shape-border-width-3) solid currentcolor;
-  color: var(--color-brand-500);
-}
-
 a.button.secondary:hover,
 button:not([class^='elsie-']).secondary:hover {
   color: var(--color-brand-600);
@@ -513,6 +553,76 @@ main img {
   height: auto;
 }
 
+/* default content */
+main .default-content-wrapper {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--default-content-border);
+  border-radius: var(--default-content-border-radius);
+  box-shadow: var(--default-content-box-shadow);
+  padding: var(--padding);
+}
+
+/* default content image */
+.columns.block img,
+main .default-content-wrapper img {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* default content text */
+.columns.block p:not(:has(:is(a.button , picture))),
+main .default-content-wrapper p:not(:has(:is(a.button , picture))) {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--text-border);
+  border-radius: var(--text-border-radius);
+  box-shadow: var(--text-box-shadow);
+  padding: var(--padding);
+  font: normal normal 300 var(--text-size)/2.4rem var(--text-font-family);
+}
+
+/* default content title */
+.columns.block :is(h1,h2,h3,h4,h5,h6),
+main .default-content-wrapper > :is(h1,h2,h3,h4,h5,h6) {
+  color: var(--heading-color);
+  background-color: var(--background-color);
+  border: var(--heading-border);
+  border-radius: var(--heading-border-radius);
+  box-shadow: var(--heading-box-shadow); 
+  padding: var(--padding);
+}
+
+/* default content button */
+.columns.block a.button,
+main .default-content-wrapper a.button {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* primary default button */
+.columns.block a.button.primary,
+main .default-content-wrapper a.button.primary {
+  background-color : var(--button-primary-background);
+  border: var(--button-primary-border);
+  color : var(--button-primary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-radius);
+  text-decoration: none;
+}
+
+/* secondary default button */
+.columns.block a.button.secondary,
+main .default-content-wrapper a.button.secondary {
+  background-color : var(--button-secondary-background);
+  border: var(--button-secondary-border);
+  color : var(--button-secondary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-radius);
+  text-decoration: none;
+}
+
 .icon {
   display: inline-block;
   height: 2.4rem;
@@ -527,6 +637,7 @@ main img {
 /* sections */
 main .section {
   padding: 2rem 15px;
+  background-color: var(--background-color);
 }
 
 main .section.extra-width > div {

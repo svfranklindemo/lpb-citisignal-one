@@ -21,7 +21,7 @@
 }
 
 .cards .cards-card-image img{
-  border-radius: 18px;
+  border-radius: var(--border-radius);
 }
 .cards .cards-card-body > *:first-child {
   margin-top: 0;

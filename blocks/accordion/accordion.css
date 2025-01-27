@@ -1,54 +1,67 @@
-.accordion {
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-}
-.accordion details:first-of-type summary {
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+.accordion.block {
+  border: var(--border);
+  box-shadow: var(--box-shadow);
 }
 
-.accordion details:last-of-type summary {
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
+.accordion.block details:first-of-type summary {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
 
-.accordion details:last-of-type[open] summary {
+.accordion.block details:last-of-type summary {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.accordion.block details:last-of-type[open] summary {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.accordion details summary {
+.accordion.block details summary {
   position: relative;
-  padding: 0 16px;
+  padding: var(--accordion-summary-padding);
   padding-right: 48px;
   cursor: pointer;
   list-style: none;
   overflow: auto;
   transition: background-color 0.2s;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--accordion-summary-background);
+  color: var(--accordion-summary-color);
   border: 0;
-  border-bottom: 1px solid var(--border-color);
+
 }
 
-.accordion details[open] summary {
-  /* background-color: lightgray; */
+.accordion.block details:not(:last-child) summary  {
+  border-bottom: var(--accordion-separator-line);
 }
 
-.accordion details summary:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+.accordion.block details[open] summary  {
+  border-bottom: var(--accordion-separator-line);
 }
 
-.accordion details summary::-webkit-details-marker {
+/* remove any margins around text */
+.accordion.block details summary p {
+  margin: 0;
+}
+
+.accordion.block details[open] summary {
+  background-color: var(--accordion-summary-background-open);
+}
+
+.accordion.block details summary:hover {
+  background-color: var(--accordion-summary-background-hover);
+}
+
+.accordion.block details summary::-webkit-details-marker {
   display: none;
 }
 
-.accordion details summary::after {
+.accordion.block details summary::after {
   content: '';
   position: absolute;
   top: 50%;
-  right: 18px;
+  right: 30px;
   transform: translateY(-50%) rotate(135deg);
   width: 9px;
   height: 9px;
@@ -57,15 +70,27 @@
   transition: transform 0.2s;
 }
 
-.accordion details[open] summary::after {
+.accordion.block details[open] summary::after {
   transform: translateY(-50%) rotate(-45deg);
+  content:'';
 }
 
-.accordion details .accordion-item-body {
-  padding: 0 16px;
+.accordion.block details .accordion-item-body {
+  padding: 0;
 }
 
-.accordion details[open] .accordion-item-body {
-  /* border-top: 1px solid grey; */
-  background-color: var(--background-color);
+.accordion.block details .accordion-item-body p {
+  margin: 0;
+  padding: var(--accordion-details-padding)
 }
+
+.accordion.block details[open] .accordion-item-body {
+  background-color: var(--accordion-details-background);
+  color: var(--details-color);
+}
+
+.accordion.block details[open]:last-child .accordion-item-body {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+

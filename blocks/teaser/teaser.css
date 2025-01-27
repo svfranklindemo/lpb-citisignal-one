@@ -3,7 +3,7 @@
   background: #000;
   align-items: stretch;
   max-height: 240px;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
 }
 
 .teaser.align-right {
@@ -14,7 +14,7 @@
 .teaser.align-right .teaser-img-col {
   display: flex;
   flex-direction: row-reverse;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -39,7 +39,7 @@
   justify-content: center;
   overflow: hidden;
   flex: 1;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -106,7 +106,7 @@
     max-height: 568px;
   }
   .teaser .teaser-img-col {
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     border-top-right-radius: 0;
     border-top-left-radius: 0;
   }
