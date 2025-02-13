@@ -175,7 +175,8 @@ export default async function decorate(block) {
       },
     },
   };
-
+  // change this to a URL that has the published images.
+  const imageParent = "https://main--citisignal-doc--adobedevxsc.aem.page"
   const models = {
     ProductDetails: {
       initialData: { ...product },
@@ -186,8 +187,9 @@ export default async function decorate(block) {
           const imageFileName = imageUrlParts[imageUrlParts.length - 1];
           const modifiedImageFileName = imageFileName.replace(/_/g, '-');
 
-          // Update the URL to the new format
-          image.url = `/images/products/${modifiedImageFileName}`;
+          // Update the URL to the new format ${imageParent}
+          image.url = `${imageParent}/images/products/${modifiedImageFileName}`;
+          //image.url = `/images/products/${modifiedImageFileName}`;
         });
         return {
           ...data,
