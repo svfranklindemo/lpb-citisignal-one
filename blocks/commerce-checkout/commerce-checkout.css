@@ -96,3 +96,8 @@ header .nav-sections,
 header .nav-tools {
   display: none !important;
 }
+
+.dropin-design .checkout-payment-methods__methods > .checkout-toggle-button:first-of-type,
+.dropin-design .checkout-payment-methods__methods > .checkout-toggle-button:last-of-type {
+  display: none;
+}
